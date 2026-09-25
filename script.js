@@ -67,6 +67,19 @@
   window.addEventListener('resize', update);
   update();
 
+
+  // ファーストビュー: 文字の後ろのなじませ（空の色）を、文字の少し下までにそろえる
+  var stage = document.querySelector('.hero-stage');
+  var copy = stage && stage.querySelector('.hero-copy');
+  function fitShade() {
+    if (!copy) return;
+    var textBottom = copy.offsetTop + copy.offsetHeight - parseFloat(getComputedStyle(copy).paddingBottom);
+    stage.style.setProperty('--shade-h', Math.round(textBottom + 90) + 'px');
+  }
+  fitShade();
+  window.addEventListener('resize', fitShade);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitShade);
+
   // 固定ボトムバー: ファーストビューを過ぎたら出す
   var bar = document.getElementById('cta-bar');
   var hero = document.querySelector('.hero');

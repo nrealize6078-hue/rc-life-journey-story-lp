@@ -9,7 +9,7 @@
    見出しは全幅で、本文はタブレット以下で有効。 */
 w-b{display:inline}
 h1 w-b,h2 w-b,h3 w-b,.pull w-b,.gold w-b,.lead w-b,.hero-sub w-b,.service-category w-b,
-.hero-bottom w-b,.final-message p w-b,.overview-label w-b,.overview-bridge w-b{display:inline-block}
+.hero-bottom w-b,.final-message p w-b,.overview-label w-b,.overview-bridge w-b,.hero-copy w-b{display:inline-block}
 @media(max-width:900px){w-b{display:inline-block}}
 h1,h2,h3,.pull,.gold,.lead{text-wrap:balance}
 .prose p,.hero-description,.hero-note,.overview-grid article>p{text-wrap:pretty}
@@ -17,33 +17,37 @@ p,h1,h2,h3{line-break:strict}
 h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
 
 /* ---------- ファーストビュー ----------
-   写真に暗い色を重ねず、写真上部の空と同じ色の面に文字を置く。
-   PC: 左に文字・右に写真 ／ タブレット・スマホ: 文字の下に写真（空の部分で自然につなぐ） */
-.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);height:auto;min-height:0;max-height:none;
-  background:linear-gradient(180deg,#003e5b 0%,#01465f 55%,#0a506b 100%);isolation:auto}
-.hero-image{position:relative;inset:auto;grid-column:2;grid-row:1;width:100%;height:100%;min-height:clamp(640px,calc(100svh - 150px),900px);
-  object-position:center 68%;z-index:0}
-.hero-copy{grid-column:1;grid-row:1;position:relative;z-index:1;width:auto;max-width:960px;justify-self:end;align-self:center;margin:0;
-  padding:clamp(56px,7vw,104px) clamp(28px,5vw,84px) clamp(56px,6vw,90px)}
-.hero h1{text-shadow:none}
-@media(min-width:1025px){.hero h1{font-size:clamp(34px,3.3vw,52px)}}
-.hero-bottom{position:static;grid-column:1/-1;grid-row:2;width:auto;background:var(--deep);color:#efdbab;text-align:center;
+   写真を文字の後ろに敷く（.hero-stage の背景）。写真全体は暗くせず、
+   文字の後ろだけ写真の空と同じ色（#003e5b）でなじませる。
+   PC: 写真を右寄せ・左端を空の色へ溶かす ／ タブレット・スマホ: 写真を全面に敷き、上に文字・下に人物 */
+.hero{display:block;height:auto;min-height:0;max-height:none;background:#003e5b;isolation:auto}
+.hero-stage{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;
+  min-height:clamp(640px,calc(100svh - 150px),900px)}
+.hero-image{position:absolute;inset:0 0 0 auto;width:60%;height:100%;min-height:0;z-index:-2;object-fit:cover;object-position:center 64%;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24%);mask-image:linear-gradient(90deg,transparent 0,#000 24%)}
+.hero-copy{position:relative;z-index:1;width:min(1200px,90%);max-width:none;margin:0 auto;
+  padding:clamp(56px,7vw,100px) 0 clamp(56px,6vw,90px)}
+@media(min-width:1025px){.hero-copy>*{max-width:min(560px,48vw)}.hero-description,.hero-note{text-wrap:balance}}
+.hero-copy h1,.hero-copy p{text-shadow:0 1px 14px rgba(0,40,60,.55)}
+@media(min-width:1025px){.hero h1{font-size:clamp(34px,3.3vw,52px);max-width:none}}
+.hero-bottom{position:relative;width:auto;background:var(--deep);color:#efdbab;text-align:center;
   padding:18px 5%;letter-spacing:.1em}
-.hero .button.light{background:transparent}
-.hero .button.light:hover{background:var(--cream)}
+.hero .button.light{background:rgba(0,62,91,.35)}
+.hero .button.light:hover{background:var(--cream);text-shadow:none}
 
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr}
-  .hero-copy{grid-column:1;grid-row:1;justify-self:start;max-width:720px;padding:44px 6% 0}
-  .hero-image{grid-column:1;grid-row:2;height:auto;min-height:0;max-height:760px;aspect-ratio:1054/1120;
-    object-position:center bottom;margin-top:-14vw;
-    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 28%);mask-image:linear-gradient(180deg,transparent 0,#000 28%)}
-  .hero-bottom{grid-row:3}
+  .hero-stage{display:block;min-height:0}
+  /* 写真は下端にそろえて原寸の比率で敷く。上端は空の色なので背景色へそのままつながる */
+  .hero-image{inset:auto 0 0 0;width:100%;height:min(141.6vw,900px);object-position:center bottom;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%);mask-image:linear-gradient(180deg,transparent 0,#000 16%)}
+  /* 文字の後ろだけ空の色でなじませ、下の人物は写真のまま見せる */
+  .hero-stage::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--shade-h,70%);z-index:-1;
+    background:linear-gradient(180deg,rgba(0,62,91,.55) 0%,rgba(0,62,91,.62) 70%,rgba(0,62,91,0) 100%)}
+  .hero-copy{width:auto;max-width:720px;margin:0;padding:44px 6% 64vw}
 }
 @media(max-width:600px){
-  .hero-copy{padding:34px 6% 0}
+  .hero-copy{padding:34px 6% 64vw}
   .hero-description{margin-bottom:26px}
-  .hero-image{margin-top:-22vw}
   .hero-bottom{font-size:13px;letter-spacing:.06em;padding:15px 6%}
   .hero .button{width:100%}
 }
