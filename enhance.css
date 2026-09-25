@@ -114,3 +114,24 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
 
 /* スマホで見出しの改行位置を固定（値は _apply_fit.py が要素に付ける） */
 @media(max-width:600px){[data-fit]{font-size:min(var(--fit-cap),var(--fit))!important}}
+
+/* ---------- 固定ボトムバー（LINE友だち追加・2026年9月25日） ----------
+   ファーストビューを過ぎたら下から出す（script.js が is-visible を付ける） */
+:root{--bar-h:72px}
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:30;height:calc(var(--bar-h) + env(safe-area-inset-bottom,0px));
+  padding:0 5% env(safe-area-inset-bottom,0px);display:flex;align-items:center;justify-content:center;gap:28px;
+  background:var(--deep);color:var(--cream);border-top:1px solid #d7bd8740}
+.js .cta-bar{transform:translateY(105%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s .45s}
+.js .cta-bar.is-visible{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.cta-bar-text{font-size:15px;letter-spacing:.08em;line-height:1.6;color:#efdbab}
+.cta-bar-line{display:block;flex:none;transition:transform .3s,opacity .3s}
+.cta-bar-line:hover{transform:translateY(-2px);opacity:.9}
+.cta-bar-line img{height:44px;width:auto;object-fit:contain}
+.footer{padding-bottom:calc(45px + var(--bar-h))}
+@media(max-width:600px){
+  :root{--bar-h:64px}
+  .cta-bar{justify-content:space-between;gap:14px;padding-left:6%;padding-right:6%}
+  .cta-bar-text{font-size:13px;letter-spacing:.04em}
+  .cta-bar-line img{height:40px}
+}
+@media(prefers-reduced-motion:reduce){.cta-bar,.cta-bar.is-visible{transition:none}}

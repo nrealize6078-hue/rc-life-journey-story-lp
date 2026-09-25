@@ -66,4 +66,17 @@
   }, { passive: true });
   window.addEventListener('resize', update);
   update();
+
+  // 固定ボトムバー: ファーストビューを過ぎたら出す
+  var bar = document.getElementById('cta-bar');
+  var hero = document.querySelector('.hero');
+  if (bar && hero) {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        bar.classList.toggle('is-visible', !entries[0].isIntersecting);
+      }, { threshold: 0 }).observe(hero);
+    } else {
+      bar.classList.add('is-visible');
+    }
+  }
 })();
