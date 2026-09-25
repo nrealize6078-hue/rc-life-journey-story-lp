@@ -1,0 +1,116 @@
+/* =========================================================
+   追加分（2026年9月25日）: スマホ対応・文節改行・アニメーション
+   style.css（元サイトのまま）の後に読み込む。
+   ========================================================= */
+[hidden]{display:none!important}
+
+/* ---------- 文節改行 ----------
+   文節を <w-b> で包み、inline-block にして語の途中で折り返さないようにする。
+   見出しは全幅で、本文はタブレット以下で有効。 */
+w-b{display:inline}
+h1 w-b,h2 w-b,h3 w-b,.pull w-b,.gold w-b,.lead w-b,.hero-sub w-b,.service-category w-b,
+.hero-bottom w-b,.final-message p w-b,.overview-label w-b,.overview-bridge w-b{display:inline-block}
+@media(max-width:900px){w-b{display:inline-block}}
+h1,h2,h3,.pull,.gold,.lead{text-wrap:balance}
+.prose p,.hero-description,.hero-note,.overview-grid article>p{text-wrap:pretty}
+p,h1,h2,h3{line-break:strict}
+h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
+
+/* ---------- ファーストビュー ----------
+   写真に暗い色を重ねず、写真上部の空と同じ色の面に文字を置く。
+   PC: 左に文字・右に写真 ／ タブレット・スマホ: 文字の下に写真（空の部分で自然につなぐ） */
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);height:auto;min-height:0;max-height:none;
+  background:linear-gradient(180deg,#003e5b 0%,#01465f 55%,#0a506b 100%);isolation:auto}
+.hero-image{position:relative;inset:auto;grid-column:2;grid-row:1;width:100%;height:100%;min-height:clamp(640px,calc(100svh - 150px),900px);
+  object-position:center 68%;z-index:0}
+.hero-copy{grid-column:1;grid-row:1;position:relative;z-index:1;width:auto;max-width:960px;justify-self:end;align-self:center;margin:0;
+  padding:clamp(56px,7vw,104px) clamp(28px,5vw,84px) clamp(56px,6vw,90px)}
+.hero h1{text-shadow:none}
+@media(min-width:1025px){.hero h1{font-size:clamp(34px,3.3vw,52px)}}
+.hero-bottom{position:static;grid-column:1/-1;grid-row:2;width:auto;background:var(--deep);color:#efdbab;text-align:center;
+  padding:18px 5%;letter-spacing:.1em}
+.hero .button.light{background:transparent}
+.hero .button.light:hover{background:var(--cream)}
+
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr}
+  .hero-copy{grid-column:1;grid-row:1;justify-self:start;max-width:720px;padding:44px 6% 0}
+  .hero-image{grid-column:1;grid-row:2;height:auto;min-height:0;max-height:760px;aspect-ratio:1054/1120;
+    object-position:center bottom;margin-top:-14vw;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 28%);mask-image:linear-gradient(180deg,transparent 0,#000 28%)}
+  .hero-bottom{grid-row:3}
+}
+@media(max-width:600px){
+  .hero-copy{padding:34px 6% 0}
+  .hero-description{margin-bottom:26px}
+  .hero-image{margin-top:-22vw}
+  .hero-bottom{font-size:13px;letter-spacing:.06em;padding:15px 6%}
+  .hero .button{width:100%}
+}
+
+/* ---------- スマホの細部 ---------- */
+.chapter-grid a>.num{margin-left:0}
+@media(max-width:600px){
+  .header{transition:transform .35s ease}
+  .header.is-hidden{transform:translateY(-100%)}
+  .chapter-visual,.academy-chapter .chapter-visual{height:auto;aspect-ratio:3/2}
+  .wide-photo{height:auto;aspect-ratio:3/2}
+  .company-image{height:auto;aspect-ratio:3/2}
+  .company .button{width:100%}
+  .prose .pull{font-size:19px}
+  .footer>a{margin-left:0}
+}
+@media(max-width:360px){
+  .brand strong{font-size:15px}
+  .nav-ceo{padding:8px 9px;font-size:11px}
+}
+
+/* ---------- ホバー ---------- */
+.chapter-grid .num{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.chapter-grid a:hover .num{transform:translateX(6px)}
+.button{transition:background .3s,color .3s,transform .3s}
+.button:hover{transform:translateY(-2px)}
+
+/* ---------- 読み込み時のアニメーション（ファーストビュー） ---------- */
+@keyframes lj-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes lj-img{from{opacity:0;scale:1.08}to{opacity:1;scale:1}}
+@keyframes lj-drift{from{scale:1}to{scale:1.05}}
+.js .hero-image{animation:lj-img 2.4s cubic-bezier(.2,.7,.2,1) both,lj-drift 22s 2.4s ease-in-out infinite alternate}
+.js .hero-copy>*{animation:lj-up 1s cubic-bezier(.2,.7,.2,1) both}
+.js .hero-copy>h1{animation:none}
+.js .hero h1 w-b{animation:lj-up .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(.3s + var(--i,0) * .07s)}
+.js .hero-copy>.service-category{animation-delay:.1s}
+.js .hero-copy>.hero-sub{animation-delay:.85s}
+.js .hero-copy>.hero-note{animation-delay:1s}
+.js .hero-copy>.hero-description{animation-delay:1.15s}
+.js .hero-copy>.button{animation-delay:1.3s}
+.js .hero-bottom{animation:lj-up 1s 1.45s cubic-bezier(.2,.7,.2,1) both}
+
+/* ---------- スクロールで現れる ---------- */
+.js .rv{opacity:0;transform:translateY(28px);
+  transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s,letter-spacing 1.2s cubic-bezier(.2,.7,.2,1);
+  transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+.js .eyebrow.rv{letter-spacing:.42em}
+.js .eyebrow.rv.in{letter-spacing:.19em}
+.js .pull.rv{filter:blur(6px)}
+.js .pull.rv.in{filter:none}
+.js .rv-img{overflow:hidden}
+.js .rv-img>img{opacity:0;scale:1.12;transition:opacity 1.2s ease,scale 1.8s cubic-bezier(.2,.7,.2,1)}
+.js .rv-img.in>img{opacity:1;scale:1}
+.js .rv-img .photo-label{opacity:0;transform:translateX(-28px);transition:opacity .9s .45s,transform .9s .45s cubic-bezier(.2,.7,.2,1)}
+.js .rv-img.in .photo-label{opacity:1;transform:none}
+
+/* 横長写真はスクロールに合わせてゆっくり動く（translate は script.js が設定） */
+.wide-photo,.company-image{overflow:hidden}
+.wide-photo img,.company-image img{height:120%;margin-top:-10%;will-change:translate}
+
+@media(prefers-reduced-motion:reduce){
+  .js .rv,.js .rv-img>img,.js .rv-img .photo-label,.js .hero-image,.js .hero-copy>*,.js .hero h1 w-b,.js .hero-bottom{
+    opacity:1!important;transform:none!important;scale:none!important;filter:none!important;animation:none!important;transition:none!important}
+  .js .eyebrow.rv{letter-spacing:.19em}
+  .wide-photo img,.company-image img{translate:none!important}
+}
+
+/* スマホで見出しの改行位置を固定（値は _apply_fit.py が要素に付ける） */
+@media(max-width:600px){[data-fit]{font-size:min(var(--fit-cap),var(--fit))!important}}
