@@ -33,7 +33,11 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
 .hero-bottom{position:relative;width:auto;background:var(--deep);color:#efdbab;text-align:center;
   padding:18px 5%;letter-spacing:.1em}
 .hero .button.light{background:rgba(0,62,91,.35)}
-.hero-sub+.button{margin-top:clamp(28px,3vw,40px)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:clamp(28px,3vw,40px);max-width:none!important}
+/* ファーストビューのLINE友だち追加（白地・LINEの緑のアイコン） */
+.button.button-line{justify-content:center;gap:10px;background:#fff;color:var(--green);border-color:#fff;text-shadow:none}
+.button.button-line:hover{background:var(--cream);border-color:var(--cream)}
+.button-line .line-ico{width:22px;height:22px;flex:none;color:#06c755}
 .hero .button.light:hover{background:var(--cream);text-shadow:none}
 
 @media(max-width:1024px){
@@ -50,6 +54,7 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
   .hero-copy{padding:34px 6% 64vw}
   .hero-description{margin-bottom:26px}
   .hero-bottom{font-size:13px;letter-spacing:.06em;padding:15px 6%}
+  .hero-actions{flex-direction:column;gap:12px}
   .hero .button{width:100%}
 }
 
@@ -88,7 +93,7 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
 .js .hero-copy>.hero-sub{animation-delay:.85s}
 .js .hero-copy>.hero-note{animation-delay:1s}
 .js .hero-copy>.hero-description{animation-delay:1.15s}
-.js .hero-copy>.button{animation-delay:1.3s}
+.js .hero-copy>.hero-actions{animation-delay:.95s}
 .js .hero-bottom{animation:lj-up 1s 1.45s cubic-bezier(.2,.7,.2,1) both}
 
 /* ---------- スクロールで現れる ---------- */
