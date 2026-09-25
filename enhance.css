@@ -33,6 +33,7 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
 .hero-bottom{position:relative;width:auto;background:var(--deep);color:#efdbab;text-align:center;
   padding:18px 5%;letter-spacing:.1em}
 .hero .button.light{background:rgba(0,62,91,.35)}
+.hero-sub+.button{margin-top:clamp(28px,3vw,40px)}
 .hero .button.light:hover{background:var(--cream);text-shadow:none}
 
 @media(max-width:1024px){
