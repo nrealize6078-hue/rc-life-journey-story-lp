@@ -149,3 +149,12 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
 /* フッターの会社情報（2026年9月27日） */
 .footer>.company-info{width:100%;font-size:13px;line-height:1.9;color:var(--green);letter-spacing:.03em}
 .footer>.company-info a{text-decoration:underline;text-underline-offset:3px}
+
+/* 「社員を守る仕組みを聞く」ボタン（2026年9月27日・LINE友だち追加の置き換え。予約ページへ） */
+.button.button-white{justify-content:center;background:#fff;color:var(--green);border-color:#fff;text-shadow:none}
+.button.button-white:hover{background:var(--cream);border-color:var(--cream)}
+.cta-bar-btn{flex:none;display:inline-flex;align-items:center;height:46px;padding:0 22px;background:#fff;color:var(--green);
+  font-size:14px;font-weight:700;letter-spacing:.04em;white-space:nowrap;border-radius:2px;transition:background .3s,transform .3s}
+.cta-bar-btn:hover{background:var(--cream);transform:translateY(-2px)}
+@media(max-width:600px){.cta-bar-btn{height:42px;padding:0 14px;font-size:13px;letter-spacing:.02em}}
+@media(max-width:360px){.cta-bar-btn{padding:0 11px;font-size:12px}}
