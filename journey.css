@@ -178,3 +178,27 @@ details.more>.prose{padding:6px 0 26px}
 /* 新しく足した部品は、どの幅でも文節で折り返し、行末の取り残しを減らす */
 .can w-b,.flow w-b,.jm-link w-b,.qa w-b,.mio-card w-b,.shot-panel figcaption w-b,.flow-panel figcaption w-b,.talk w-b,.gallery figcaption w-b{display:inline-block}
 .can li,.flow strong,.flow span,.jm-desc,.mio-card li,.qa .q-text,.a p,.shot-panel figcaption,.talk{text-wrap:balance}
+
+/* ---------- 人物写真の代わりに実画面・図を主役にする（2026年9月27日） ---------- */
+.screen-visual,.flow-visual{display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#e9ebe4,#dfe4dc)}
+.screen-visual>.shot-panel,.flow-visual>.flow-panel{margin:0;background:transparent;padding:40px 24px 110px;width:100%;max-width:520px}
+.screen-visual .phone{width:min(290px,64%)}
+.screen-visual .pair .phone,.screen-visual .shot-panel.pair .phone{width:min(230px,44%)}
+.screen-visual figcaption,.flow-visual figcaption{text-align:center;color:#4b5a53}
+.flow-visual .flow-panel{max-width:460px}
+.flow-visual .flow li::before{background:#fff}
+.flow-visual .flow strong{font-size:18px}
+/* 写真を外した ACADEMY の記事は1段で読む */
+.ch.no-visual{display:block}
+.ch.no-visual .ch-head,.ch.no-visual .ch-body{width:88%;max-width:860px;margin:0 auto;padding-left:0;padding-right:0}
+.ch.no-visual .ch-head{padding-top:70px}
+/* 実際の画面は入口の2画面だけ */
+.gallery{grid-template-columns:repeat(2,minmax(0,240px))}
+@media(max-width:900px){.screen-visual,.flow-visual{min-height:0}}
+@media(max-width:600px){
+  .screen-visual,.flow-visual,.academy-chapter .screen-visual{height:auto!important;aspect-ratio:auto!important;min-height:0;max-height:none}
+  .screen-visual>.shot-panel,.flow-visual>.flow-panel{padding:30px 16px 84px}
+  .screen-visual .phone{width:min(250px,68%)}
+  .ch.no-visual .ch-head{padding-top:46px}
+  .gallery{grid-template-columns:1fr 1fr}
+}
