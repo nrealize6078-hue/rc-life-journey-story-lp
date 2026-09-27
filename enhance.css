@@ -158,3 +158,6 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
 .cta-bar-btn:hover{background:var(--cream);transform:translateY(-2px)}
 @media(max-width:600px){.cta-bar-btn{height:42px;padding:0 14px;font-size:13px;letter-spacing:.02em}}
 @media(max-width:360px){.cta-bar-btn{padding:0 11px;font-size:12px}}
+/* バーの文言: スマホは「経営者の皆さまへ。」を省いて2行 */
+@media(max-width:600px){.cta-bar .bar-pc{display:none}}
+@media(max-width:360px){.cta-bar{gap:10px}.cta-bar-text{font-size:12px;letter-spacing:0}}
