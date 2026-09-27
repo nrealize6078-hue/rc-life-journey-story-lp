@@ -38,3 +38,13 @@ CSS を変えたら `index.html` の `enhance.css?v=` の数字を上げる（�
 ## 公開時に含めないもの
 
 `_` で始まるファイル・フォルダ（`_original/` は取得した元サイトの控え）、`README.md`
+
+## 改善版（2026年9月27日・確認用 /v2/）
+
+- 公開: https://nrealize6078-hue.github.io/rc-life-journey-story-lp/v2/ （noindex。今の / はそのまま）
+- 組み立て: `python _build_v2.py v2` → `cd v2 && python ../_apply_bunsetsu.py`
+  （元は `_src_index.html`＝改善前の index.html の控え。差し替えるときは `python _build_v2.py root` → ルートで `python _apply_bunsetsu.py`）
+- 追加ファイル: `journey.css` / `journey.js` / `shots/`（実画面。会員ページのプレビュー版をダミーデータで撮影＋Check42・Event Checkの公開ページ＋QUEST電子書籍）
+- 構成: 旅の地図（8ステップ縦導線）→ 各機能を「見出し・導入文・写真・できること・実画面/図・詳しく読む」に統一 →
+  ACADEMY&QUESTに流れの図 → 使い方（流れ・実際の画面・ミオ先生の注意）→ よくある質問7問
+- 新しい文言の根拠: 会員ページ rc-dashboard（onboarding/規約/プライバシー/lifemeeting）と Check42・Event Check の公開ページの記載
