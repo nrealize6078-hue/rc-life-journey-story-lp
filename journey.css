@@ -1,0 +1,180 @@
+/* =========================================================
+   改善版（2026年9月27日）: LIFE JOURNEY MAP・機能セクションの共通フォーマット・
+   実画面・流れの図・使い方・よくある質問
+   style.css → enhance.css の後に読み込む
+   ========================================================= */
+:root{--muted:#56635d;--panel:#efece3;--gold-soft:#ad8c4e66}
+
+/* ---------- LIFE JOURNEY MAP（縦の旅の地図） ---------- */
+.journey-map{list-style:none;margin:40px 0 30px;padding:0;max-width:760px}
+.jm-item{position:relative}
+.jm-item::before{content:"";position:absolute;left:24px;top:0;bottom:0;width:1px;background:var(--gold-soft)}
+.jm-item:first-child::before{top:50%}
+.jm-item:last-child::before{bottom:50%}
+.jm-link{position:relative;display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:center;padding:14px 12px 14px 0;
+  border-radius:2px;transition:background .25s}
+.jm-link:hover{background:#edece2}
+.jm-no{position:relative;z-index:1;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  background:var(--cream);border:1px solid var(--gold);font-family:Georgia,serif;font-size:17px;color:var(--gold);
+  transition:background .3s,color .3s}
+.jm-link:hover .jm-no{background:var(--gold);color:#fff}
+.jm-body{display:flex;flex-direction:column;gap:3px}
+.jm-en{font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.jm-ja{font-size:19px;font-weight:600;letter-spacing:.03em}
+.jm-desc{font-size:14px;line-height:1.7;color:var(--muted)}
+@media(min-width:901px){
+  .journey-map{max-width:none;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);grid-auto-flow:column;column-gap:64px}
+  .jm-item:nth-child(4)::before{bottom:50%}
+  .jm-item:nth-child(5)::before{top:50%}
+}
+.contents-note{border-left:0;background:#fff;border:1px solid var(--line);padding:16px 20px;max-width:760px}
+
+/* ---------- 機能セクションの共通フォーマット ----------
+   見出し → 導入文 → 写真 → できること → 実画面/図 → 詳しく読む
+   PC: 左に写真（追従）・右に見出しと本文 ／ スマホ: 上から順に */
+.ch{display:grid;grid-template-columns:44% 56%;grid-template-rows:auto 1fr}
+.ch>.chapter-visual{grid-column:1;grid-row:1/span 2}
+.ch-head{grid-column:2;grid-row:1;padding:80px clamp(28px,5vw,95px) 0}
+.ch-body{grid-column:2;grid-row:2;padding:0 clamp(28px,5vw,95px) 88px}
+@media(min-width:1500px){.ch-head,.ch-body{max-width:800px}}
+.ch-head .eyebrow{margin-bottom:18px}
+.ch-head h2,.ch-head h3{margin-bottom:22px}
+.ch-head h3{font-size:clamp(25px,2.5vw,35px);line-height:1.8;font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
+.ch-lead{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif;font-size:21px;line-height:1.8;font-weight:600;color:var(--gold)}
+.academy .ch-lead{color:#d7bd87}
+
+/* できること */
+.can{margin:34px 0 0;background:#fff;border:1px solid var(--line);padding:22px 24px 12px}
+.can-label{font-size:13px;letter-spacing:.14em;font-weight:700;color:var(--gold);margin-bottom:8px}
+.can ul{list-style:none;margin:0;padding:0}
+.can li{position:relative;padding:0 0 12px 26px;font-size:16px;line-height:1.8}
+.can li::before{content:"";position:absolute;left:2px;top:.62em;width:10px;height:10px;border-radius:50%;border:2px solid var(--gold)}
+.academy .can{background:rgba(255,255,255,.06);border-color:#ffffff30}
+
+/* 実画面（スマホの枠） */
+.shot-panel{margin:26px 0 0;background:var(--panel);padding:30px 24px 22px;text-align:center}
+.phones{display:flex;justify-content:center;gap:18px}
+.phone{width:min(260px,70%);flex:none;border:6px solid #1c2623;border-radius:28px;overflow:hidden;background:#fff;
+  box-shadow:0 20px 40px -26px rgba(9,44,38,.55)}
+.phone img{display:block;width:100%;height:auto}
+.shot-panel.pair .phone{width:min(220px,44%)}
+.shot-panel figcaption,.flow-panel figcaption{margin-top:16px;font-size:13px;line-height:1.7;color:var(--muted);text-align:left}
+.academy .shot-panel{background:rgba(255,255,255,.06)}
+.academy .shot-panel figcaption{color:#cfd6cf}
+
+/* 流れの図 */
+.flow{list-style:none;margin:0;padding:0;counter-reset:flow}
+.flow li{counter-increment:flow;position:relative}
+.flow li::before{content:counter(flow);position:relative;z-index:1;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--gold);background:var(--cream);color:var(--gold);font-family:Georgia,serif;font-size:16px}
+.flow strong{display:block;font-size:16px;line-height:1.7;font-weight:600}
+.flow span{display:block;font-size:14px;line-height:1.7;color:var(--muted);margin-top:2px}
+/* 縦並び（スマホ・狭い欄） */
+.flow-v li,.flow-h li{padding:0 0 22px 58px;min-height:40px}
+.flow-v li::before,.flow-h li::before{position:absolute;left:0;top:0}
+.flow-v li:not(:last-child)::after,.flow-h li:not(:last-child)::after{content:"";position:absolute;left:20px;top:40px;bottom:0;width:1px;background:var(--gold-soft)}
+.flow-v strong,.flow-h strong{padding-top:7px}
+.flow-panel{margin:26px 0 0;background:var(--panel);padding:28px 24px 20px}
+/* 横並び（PCで広い欄） */
+@media(min-width:901px){
+  .flow-h{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:18px}
+  .flow-h li{padding:56px 0 0}
+  .flow-h li:not(:last-child)::after{left:52px;right:-6px;top:20px;bottom:auto;width:auto;height:1px}
+  .flow-h strong{padding-top:0}
+}
+.academy .flow li::before{background:var(--green);border-color:#d7bd87;color:#d7bd87}
+.academy .flow span{color:#cfd6cf}
+.academy .flow li:not(:last-child)::after{background:#d7bd8766}
+.flow-academy{margin-top:44px}
+.academy-row{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start;margin-top:40px}
+.academy-row .can,.academy-row .shot-panel{margin-top:0}
+@media(max-width:900px){.academy-row{grid-template-columns:1fr;gap:0}.academy-row .shot-panel{margin-top:22px}}
+
+/* 大切な人と話す: 一言のカード */
+.talk-card{margin:26px 0 0;background:var(--panel);padding:26px 24px}
+.talk-label{font-size:13px;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.talk{font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif;font-size:19px;line-height:1.8;background:#fff;
+  padding:14px 18px;margin-top:10px;border-radius:16px 16px 16px 4px;display:inline-block}
+
+/* 詳しく読む */
+details.more{margin-top:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+details.more>summary,.qa>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px}
+details.more>summary::-webkit-details-marker,.qa>summary::-webkit-details-marker{display:none}
+details.more>summary{padding:18px 2px;font-size:15px;font-weight:600;letter-spacing:.06em}
+details.more>summary::after,.qa>summary::after{content:"＋";font-size:18px;color:var(--gold);flex:none;transition:transform .3s}
+details[open].more>summary::after,.qa[open]>summary::after{content:"－"}
+details.more .t-close{display:none}
+details[open].more .t-open{display:none}
+details[open].more .t-close{display:inline}
+details.more>.prose{padding:6px 0 26px}
+.academy details.more{border-color:#ffffff30}
+.intro details.more{margin:6px 0 0}
+.intro details.more+.pull{margin-top:28px}
+.ch-body>.prose{margin-top:6px}
+
+/* ---------- 実際に使うと ---------- */
+.how{background:#f1eee6}
+.how .section{padding:110px 0}
+.how h2{margin-bottom:36px}
+.flow-steps{margin-bottom:64px}
+.how-sub{font-size:21px;margin-bottom:22px;font-family:'Yu Mincho','Hiragino Mincho ProN','Noto Serif JP',serif}
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.gallery figure{margin:0;text-align:center}
+.gallery .phone{width:100%;border-width:5px;border-radius:22px}
+.gallery figcaption{font-size:13px;line-height:1.6;margin-top:10px;color:var(--muted)}
+.gallery-note{font-size:13px;color:var(--muted);margin-top:14px}
+.mio-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:56px}
+.mio-card{background:#fff;border:1px solid var(--line);padding:26px 26px 14px}
+.mio-card h3{font-size:18px;margin-bottom:14px}
+.mio-card ul{margin:0;padding-left:1.2em}
+.mio-card li{font-size:15px;line-height:1.85;margin-bottom:10px}
+.mio-card.note{background:transparent}
+.mio-card.note li{font-size:14px;color:var(--muted)}
+@media(max-width:1024px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.mio-grid{grid-template-columns:1fr}}
+
+/* ---------- よくある質問 ---------- */
+.faq{max-width:860px}
+.faq h2{margin-bottom:30px}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa>summary{padding:20px 2px;font-size:17px;font-weight:600;line-height:1.7;justify-content:flex-start}
+.qa>summary::after{margin-left:auto}
+.q-mark,.a-mark{font-family:Georgia,serif;color:var(--gold);font-size:20px;flex:none;width:22px}
+.a{display:flex;gap:16px;padding:0 2px 22px}
+.a p{font-size:16px;line-height:2}
+
+/* 申し込み部分 */
+.cta-actions{margin-top:10px}
+
+/* ---------- スマホ ---------- */
+@media(max-width:900px){
+  .ch{grid-template-columns:40% 60%}
+  .ch-head{padding:55px 30px 0}
+  .ch-body{padding:0 30px 60px}
+}
+@media(max-width:600px){
+  .ch{display:flex;flex-direction:column}
+  .ch-head{padding:46px 6% 26px}
+  .ch-body{padding:0 6% 56px}
+  .ch>.chapter-visual{order:0}
+  .ch-head .eyebrow{font-size:12px;margin-bottom:14px}
+  .ch-head h2{font-size:27px;line-height:1.75}
+  .ch-head h3{font-size:26px}
+  .ch-lead{font-size:19px}
+  .ch-body>.can:first-child{margin-top:30px}
+  .can{padding:18px 18px 8px}
+  .can li{font-size:15px}
+  .shot-panel,.flow-panel,.talk-card{padding:24px 16px 18px}
+  .jm-link{gap:16px}
+  .jm-ja{font-size:18px}
+  .how .section{padding:70px 0}
+  .gallery{grid-template-columns:1fr 1fr;gap:16px}
+  .qa>summary{font-size:16px}
+  .a p{font-size:15px}
+  .cta-actions{flex-direction:column}
+}
+
+/* 新しく足した部品は、どの幅でも文節で折り返し、行末の取り残しを減らす */
+.can w-b,.flow w-b,.jm-link w-b,.qa w-b,.mio-card w-b,.shot-panel figcaption w-b,.flow-panel figcaption w-b,.talk w-b,.gallery figcaption w-b{display:inline-block}
+.can li,.flow strong,.flow span,.jm-desc,.mio-card li,.qa .q-text,.a p,.shot-panel figcaption,.talk{text-wrap:balance}
