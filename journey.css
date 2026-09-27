@@ -237,3 +237,9 @@ details.more>.prose{padding:6px 0 26px}
   .screen-visual .browser{max-height:calc(100svh - 330px);min-height:0}
   .screen-visual .browser img{object-fit:cover;object-position:top}
 }
+/* モックアップをブラウザーの枠に統一（2026年9月27日） */
+.gallery{grid-template-columns:repeat(2,minmax(0,1fr));max-width:900px}
+.gallery .browser{max-width:none}
+@media(max-width:600px){.gallery{grid-template-columns:1fr;gap:22px}}
+.academy-row .pc-panel{margin-top:0}
+.pc-quest-fix{}
