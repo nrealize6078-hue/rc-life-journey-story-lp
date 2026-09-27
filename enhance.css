@@ -145,3 +145,7 @@ h1,h2,.pull,.final-message h3,.chapter-copy h3,.gold{font-family:'Yu Mincho','Hi
   .cta-bar-line img{height:40px}
 }
 @media(prefers-reduced-motion:reduce){.cta-bar,.cta-bar.is-visible{transition:none}}
+
+/* フッターの会社情報（2026年9月27日） */
+.footer>.company-info{width:100%;font-size:13px;line-height:1.9;color:var(--green);letter-spacing:.03em}
+.footer>.company-info a{text-decoration:underline;text-underline-offset:3px}
