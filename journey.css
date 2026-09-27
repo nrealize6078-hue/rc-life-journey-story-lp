@@ -252,3 +252,5 @@ details.more>.prose{padding:6px 0 26px}
   .screen-visual .phone{max-height:calc(100svh - 330px)}
   .screen-visual .phone img{height:100%;object-fit:cover;object-position:top}
 }
+/* ご注意を外したので、ミオ先生のカードは1枚 */
+.mio-grid{grid-template-columns:minmax(0,560px)}
