@@ -243,3 +243,7 @@ details.more>.prose{padding:6px 0 26px}
 @media(max-width:600px){.gallery{grid-template-columns:1fr;gap:22px}}
 .academy-row .pc-panel{margin-top:0}
 .pc-quest-fix{}
+/* スマホ枠に戻す（2026年9月27日・社長「スマホ幅の方がきれい」） */
+.gallery{grid-template-columns:repeat(2,minmax(0,240px));max-width:none}
+@media(max-width:600px){.gallery{grid-template-columns:1fr 1fr;gap:16px}}
+#chapters>.shot-panel{max-width:760px;margin-top:34px}
