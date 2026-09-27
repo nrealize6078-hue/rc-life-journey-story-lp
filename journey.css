@@ -247,3 +247,8 @@ details.more>.prose{padding:6px 0 26px}
 .gallery{grid-template-columns:repeat(2,minmax(0,240px));max-width:none}
 @media(max-width:600px){.gallery{grid-template-columns:1fr 1fr;gap:16px}}
 #chapters>.shot-panel{max-width:760px;margin-top:34px}
+/* PCで左に追従する欄のスマホ画面も、画面の高さまでにして上から見せる */
+@media(min-width:601px){
+  .screen-visual .phone{max-height:calc(100svh - 330px)}
+  .screen-visual .phone img{height:100%;object-fit:cover;object-position:top}
+}
